@@ -4,10 +4,17 @@
 
 
 :root {
-    --background-color-navbar:  #091336;
-    --background-color-page: #e9ebf0;
-    --background-color-info: #f5f5f5;
-    --background-color-button-navbar: #085cef;
+    --background-color-navbar:  rgba(9, 19, 54, 1);
+;
+    --background-color-page: rgba(233, 237, 243, 1);
+;
+    --background-color-info: rgba(255, 255, 255, 1);
+;
+    --background-color-button-navbar: rgba(0, 95, 248, 1);
+
+    --text-header-color: rgba(137, 156, 177, 1);
+
+;
 
     --font-family-main: "SFProDisplay-Regular", serif ;
     --font-size-brand: 1.76em;

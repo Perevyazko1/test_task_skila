@@ -25,6 +25,13 @@ export const BlockInfo = memo((props: BlockInfoProps) => {
       const handleRowLeave = () => {
         setHoveredRow(null);
       };
+    //   const handleDate (dateStr:string)=>{
+    //       const formattedTime = new Date(dateStr).toLocaleTimeString('en-US', {
+    //       hour12: false,
+    //       hour: 'numeric',
+    //       minute: 'numeric'
+    //     });
+    // }
         const {
         className,
         children,
@@ -37,7 +44,7 @@ export const BlockInfo = memo((props: BlockInfoProps) => {
 
         async function fetchData() {
         const list_data = await MainAPI.get_data(`getList?date_start=2023-01-01&date_end=2023-02-01&in_out=${callFilter}`);
-        setListData(list_data.results)
+        setListData(list_data?.results)
         }
 
 
@@ -45,7 +52,17 @@ export const BlockInfo = memo((props: BlockInfoProps) => {
     fetchData();
 
   }, [callFilter]);
-
+    const filterCall={
+        incomingCall:{
+            "Входящие":"0"
+        },
+        outgoingCall:{
+            "Исходящие":"1"
+        },
+        allCall:{
+            "Все Звонки":""
+        }
+    }
 
     return (
         <div
