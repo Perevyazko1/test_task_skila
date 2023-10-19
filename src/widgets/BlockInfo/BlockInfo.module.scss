@@ -1,17 +1,23 @@
 .BlockInfo{
     background: var(--background-color-info);
-    border-radius: 20px ;
+    border-radius: 10px ;
     max-width: 1440px;
     width: 75%;
-    margin: 0 0 0 240px;
+    margin: 20px 0 0 240px;
     font: var(--font-main)
 }
 th {
-    margin: 0 5px;
+    width: auto;
+    padding: 0 20px;
 }
+td {
+    width: auto;
+    padding: 0 20px;
+}
+
 .Avatar{
     width: 32px;
-    margin: 5px;
+    margin: 5px 0 0 35px;
 }
 .TypeCall{
     width: 24px;

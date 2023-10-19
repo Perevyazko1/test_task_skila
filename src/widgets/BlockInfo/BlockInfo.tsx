@@ -86,8 +86,9 @@ export const BlockInfo = memo((props: BlockInfoProps) => {
     };
 
             async function fetchData() {
-        const list_data = await MainAPI.get_data(`getList?date_start=2023-01-01&date_end=2023-02-01&in_out=1`);
+        const list_data = await MainAPI.get_data(`getList?date_start=2023-01-01&date_end=2023-02-01&in_out=0`);
         setListData(list_data.results)
+                console.log(list_data)
 
 
 
@@ -138,7 +139,7 @@ export const BlockInfo = memo((props: BlockInfoProps) => {
                             <td>{item.source}</td>
                             <td>Оценка</td>
                             <td>{item.time}</td>
-                            {item.time && hoveredRow === index && <AudioPlayer id_record={item.record} partnership_id={item.partnership_id} />}
+                            {item.time > 0 && hoveredRow === index && <AudioPlayer id_record={item.record} partnership_id={item.partnership_id} />}
                         </tr>
                     )}
                 </tbody>
