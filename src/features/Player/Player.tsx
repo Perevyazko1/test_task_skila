@@ -55,8 +55,6 @@ function AudioPlayer({ id_record, partnership_id }: AudioPlayerProps) {
 
   return (
     <div>
-      {/*<button onClick={playAudio}>Play</button>*/}
-      {/*<button onClick={pauseAudio}>Pause</button>*/}
       <audio ref={audioRef} controls></audio>
     </div>
   );
