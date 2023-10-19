@@ -1,15 +1,15 @@
 import {memo, ReactNode} from 'react';
 import {classNames, Mods} from "shared/lib/classNames/classNames";
-import cls from "./PageWrapper.module.scss"
-import {Header} from "../../../widgets/Header/Header";
+import cls from "./Header.module.scss"
+import header from "shared/assets/icons/header.svg"
 
-interface PageWrapperProps {
+interface HeaderProps {
     className?: string
     children?: ReactNode
 }
 
 
-export const PageWrapper = memo((props: PageWrapperProps) => {
+export const Header = memo((props: HeaderProps) => {
     const {
         className,
         children,
@@ -22,10 +22,10 @@ export const PageWrapper = memo((props: PageWrapperProps) => {
 
     return (
         <div
-            className={classNames(cls.PageWrapper, mods, [className])}
+            className={classNames(cls.Header, mods, [className])}
             {...otherProps}
         >
-            <Header/>
+            <img className={cls.HeaderImage} src={header}/>
             {children}
         </div>
     );
