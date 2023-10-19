@@ -4,13 +4,13 @@ import cls from "./Filter.module.scss"
 import vector_open from "shared/assets/icons/vector_open.svg"
 import vector_close from "shared/assets/icons/vector_close.svg"
 import {useQueryParams} from "shared/hooks/useQueryParams/useQueryParams";
-import {FilterType} from "./model/FilterType";
+
 
 interface FilterProps {
     className?: string
     children?: ReactNode
     nameFilter: string
-    filters?: {[key: string]: string;}
+    filters?: { [key: string]: [string, string] };
     pathParams?: string
 }
 
@@ -73,14 +73,13 @@ export const Filter = memo((props: FilterProps) => {
             {statusFilter &&
                 <div className={cls.OpenFilter}>
 
-                    {Object.values(filter).map((value,index) =>
+                    {filters && Object.values(filters)?.map((value,index) =>
                       <div
                           key={value[0]}
                           className={hoveredRow === index? cls.ActiveRowFilter:cls.RowFilter}
                           onClick={()=>{
-                                setParamsFilter(value[1])
                                 setHeaderFilter(value[0])
-                                handleSaveFilter()
+                                setQueryParam(`${pathParams}`,value[1])
                                 setStatusFilter(false)
                             }}
                           onMouseEnter={() => handleRowHover(index)}

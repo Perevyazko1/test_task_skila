@@ -21,11 +21,12 @@ interface MainPageProps {
     const mods: Mods = {
 
     };
-    const typeCals ={
-        incomingCalls:"Входящие",
-        outgoingCalls:"Исходящие",
-        allCalls:"Все"
+            const filterCalls:{ [key: string]: [string, string]} = {
+        incomingCalls:["Входящие","1"],
+        outgoingCalls:["Исходящие","0"],
+        allCalls:["Все",""]
     }
+
 
     return (
         <PageWrapper>
@@ -34,7 +35,7 @@ interface MainPageProps {
                 {...otherProps}
             >
                 <div className={cls.BlockFilter}>
-                    <Filter nameFilter={"Все типы"} filters={typeCals} pathParams={"in_out"}/>
+                    <Filter nameFilter={"Все типы"} filters={filterCalls} pathParams={"in_out"}/>
                     <Filter nameFilter={"Все сотрудники"}/>
                     <Filter nameFilter={"Все звонки"}/>
                     <Filter nameFilter={"Все источники"}/>

@@ -52,17 +52,6 @@ export const BlockInfo = memo((props: BlockInfoProps) => {
     fetchData();
 
   }, [callFilter]);
-    const filterCall={
-        incomingCall:{
-            "Входящие":"0"
-        },
-        outgoingCall:{
-            "Исходящие":"1"
-        },
-        allCall:{
-            "Все Звонки":""
-        }
-    }
 
     return (
         <div
