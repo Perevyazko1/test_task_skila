@@ -28,13 +28,9 @@ export const Filter = memo((props: FilterProps) => {
 
     const [statusFilter, setStatusFilter] = useState(false)
     const {setQueryParam, queryParameters, initialLoad} = useQueryParams();
-    const [paramsFilter, setParamsFilter] = useState<string>("");
     const [hoveredRow, setHoveredRow] = useState<number | null>(null);
     const [headerFilter,setHeaderFilter] = useState<string>(nameFilter);
 
-        const handleSaveFilter = () => {
-          setQueryParam(`${pathParams}`,paramsFilter)
-        }
 
           const handleRowHover = (index: number) => {
         setHoveredRow(index);

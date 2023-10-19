@@ -6,6 +6,8 @@ import incoming_call from "shared/assets/icons/incoming_call.svg"
 import outgoing_call from  "shared/assets/icons/outgoing_call.svg"
 import {AudioPlayer} from "features/Player/Player";
 import {GetList} from "providers/api/models/GetList";
+import {useQueryParams} from "../../shared/hooks/useQueryParams/useQueryParams";
+import {useLocation} from "react-router-dom";
 
 interface BlockInfoProps {
     className?: string
@@ -17,6 +19,8 @@ export const BlockInfo = memo((props: BlockInfoProps) => {
     const [listData, setListData] = useState<GetList[]>();
     const [callFilter, setCallFilter] = useState<number | null>(null);
     const [hoveredRow, setHoveredRow] = useState<number | null>(null);
+    const {setQueryParam, queryParameters, initialLoad} = useQueryParams();
+    const location = useLocation()
 
       const handleRowHover = (index: number) => {
         setHoveredRow(index);
@@ -43,15 +47,16 @@ export const BlockInfo = memo((props: BlockInfoProps) => {
     };
 
         async function fetchData() {
-        const list_data = await MainAPI.get_data(`getList?date_start=2023-01-01&date_end=2023-02-01&in_out=${callFilter}`);
+        const list_data = await MainAPI.get_data(`getList${location.search}`);
         setListData(list_data?.results)
         }
 
 
     useEffect(() => {
     fetchData();
+    console.log(location)
 
-  }, [callFilter]);
+  }, [location.search]);
 
     return (
         <div
