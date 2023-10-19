@@ -1,12 +1,27 @@
-import React, { useEffect, useRef } from 'react';
+import React, {memo, useEffect, useRef} from 'react';
 import axios from 'axios';
+import {classNames, Mods} from "shared/lib/classNames/classNames";
+import cls from "./Player.module.scss"
 
 interface AudioPlayerProps {
   id_record: string;
   partnership_id: string;
+  className?: string
 }
 
-function AudioPlayer({ id_record, partnership_id }: AudioPlayerProps) {
+export const AudioPlayer = memo((props: AudioPlayerProps) => {
+    const {
+        className,
+        id_record,
+        partnership_id,
+
+        ...otherProps
+    } = props
+  const mods: Mods = {
+
+    };
+
+
   const audioRef = useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
@@ -21,7 +36,6 @@ function AudioPlayer({ id_record, partnership_id }: AudioPlayerProps) {
           }
         });
         const audioBlobUrl = URL.createObjectURL(response.data);
-        console.log(response)
         if (audioRef.current) {
           audioRef.current.src = audioBlobUrl;
           audioRef.current.load();
@@ -41,23 +55,10 @@ function AudioPlayer({ id_record, partnership_id }: AudioPlayerProps) {
     };
   }, [id_record, partnership_id]);
 
-  const playAudio = () => {
-    if (audioRef.current) {
-      audioRef.current.play();
-    }
-  };
-
-  const pauseAudio = () => {
-    if (audioRef.current) {
-      audioRef.current.pause();
-    }
-  };
 
   return (
-    <div>
-      <audio ref={audioRef} controls></audio>
+    <div className={classNames(cls.Player, mods,[className])}>
+      <audio className={cls.ButtonPlayer} ref={audioRef} controls></audio>
     </div>
   );
-}
-
-export default AudioPlayer;
+})

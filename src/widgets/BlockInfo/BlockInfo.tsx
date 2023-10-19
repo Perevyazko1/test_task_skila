@@ -2,9 +2,9 @@ import {memo, ReactNode, useEffect, useState} from 'react';
 import {classNames, Mods} from "shared/lib/classNames/classNames";
 import cls from "./BlockInfo.module.scss"
 import MainAPI from "providers/api/axios";
-import AudioPlayer from "features/Player/Player";
 import incoming_call from "shared/assets/icons/incoming_call.svg"
 import outgoing_call from  "shared/assets/icons/outgoing_call.svg"
+import {AudioPlayer} from "../../features/Player/Player";
 
 interface BlockInfoProps {
     className?: string
@@ -138,7 +138,7 @@ export const BlockInfo = memo((props: BlockInfoProps) => {
                             <td>{item.from_number}</td>
                             <td>{item.source}</td>
                             <td>Оценка</td>
-                            <td>{item.time}</td>
+                            <td>{item.time > 0 && hoveredRow !== index && item.time}</td>
                             {item.time > 0 && hoveredRow === index && <AudioPlayer id_record={item.record} partnership_id={item.partnership_id} />}
                         </tr>
                     )}
