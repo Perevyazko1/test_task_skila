@@ -1,0 +1,24 @@
+.NavBarCustom{
+    width: 13%;
+    max-width: 240px;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    background: var(--background-color-navbar);
+    color:  rgba(255, 255, 255, 0.6);
+    font: var(--font-navbar);
+;
+}
+.Brand{
+}
+.Link{
+    max-width: 240px;
+    height: 52px;
+}
+.IconLink{
+    width: 24px;
+    margin: 5px;
+}
+.TextLink{
+    margin: 5px;
+}

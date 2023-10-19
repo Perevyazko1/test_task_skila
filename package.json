@@ -1,5 +1,6 @@
 {
   "name": "test_task_skila",
+  "homepage": "https://perevyazko1.github.io/test_task_skila",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -10,13 +11,18 @@
     "@types/node": "^16.18.58",
     "@types/react": "^18.2.28",
     "@types/react-dom": "^18.2.13",
+    "axios": "^1.5.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^6.17.0",
     "react-scripts": "5.0.1",
+    "sass": "^1.69.3",
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

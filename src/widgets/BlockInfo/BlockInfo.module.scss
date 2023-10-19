@@ -1,0 +1,27 @@
+.BlockInfo{
+    background: var(--background-color-info);
+    border-radius: 20px ;
+    max-width: 1440px;
+    width: 75%;
+    margin: 0 0 0 240px;
+    font: var(--font-main)
+}
+th {
+    margin: 0 5px;
+}
+.Avatar{
+    width: 32px;
+    margin: 5px;
+}
+.TypeCall{
+    width: 24px;
+    margin: -5px 5px;
+}
+.RowCall{
+    border-top: 2px solid #ececec;
+    border-bottom: 2px solid #ececec;
+
+}
+.RowCallActive{
+    background: var(--background-color-page);
+}
