@@ -28,12 +28,12 @@ export const Filter = memo((props: FilterProps) => {
 
     const [statusFilter, setStatusFilter] = useState(false)
     const {setQueryParam, queryParameters, initialLoad} = useQueryParams();
-    const [callFilter, setCallFilter] = useState<number | null>(null);
+    const [paramsFilter, setParamsFilter] = useState<string>("");
     const [hoveredRow, setHoveredRow] = useState<number | null>(null);
     const [headerFilter,setHeaderFilter] = useState<string>(nameFilter);
 
         const handleSaveFilter = () => {
-          setQueryParam(`${pathParams}`,headerFilter)
+          setQueryParam(`${pathParams}`,paramsFilter)
         }
 
           const handleRowHover = (index: number) => {
@@ -49,9 +49,9 @@ export const Filter = memo((props: FilterProps) => {
 
     };
     const filter = {
-        incomingCalls:"Входящие",
-        outgoingCalls:"Исходящие",
-        allCalls:"Все"
+        incomingCalls:["Входящие","1"],
+        outgoingCalls:["Исходящие","0"],
+        allCalls:["Все",""]
     }
 
     return (
@@ -72,20 +72,25 @@ export const Filter = memo((props: FilterProps) => {
             </div>
             {statusFilter &&
                 <div className={cls.OpenFilter}>
-                    {filters && Object.entries(filters).map((values,keys,)=>
-                        <div
-                            className={hoveredRow === keys? cls.ActiveRowFilter:cls.RowFilter}
-                            onClick={()=>{
-                                setHeaderFilter(values[1])
+
+                    {Object.values(filter).map((value,index) =>
+                      <div
+                          key={value[0]}
+                          className={hoveredRow === index? cls.ActiveRowFilter:cls.RowFilter}
+                          onClick={()=>{
+                                setParamsFilter(value[1])
+                                setHeaderFilter(value[0])
                                 handleSaveFilter()
                                 setStatusFilter(false)
                             }}
-                            onMouseEnter={() => handleRowHover(keys)}
-                            onMouseLeave={handleRowLeave}
-                            key={keys}
-                        >
-                            {values[1]}
-                        </div>
+                          onMouseEnter={() => handleRowHover(index)}
+                          onMouseLeave={handleRowLeave}
+
+
+
+                      >
+                        {value[0]}
+                      </div>
                     )}
                 </div>}
             {children}
