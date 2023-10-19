@@ -7,7 +7,6 @@ import {NavBarCustom} from "../widgets/NavBarCustom/NavBarCustom";
 function App() {
   return (
     <>
-        <NavBarCustom/>
         <Routes>
             <Route path={"/test_task_skila"} element={<MainPage/>}/>
         </Routes>

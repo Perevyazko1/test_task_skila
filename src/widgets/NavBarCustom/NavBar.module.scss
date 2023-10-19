@@ -1,13 +1,12 @@
 .NavBarCustom{
     width: 240px;
+    height: 100vh;
     max-width: 240px;
-    height: 100%;
     position: absolute;
     left: 0;
     background: var(--background-color-navbar);
     color:  rgba(255, 255, 255, 0.6);
     font: var(--font-navbar);
-;
 }
 .Brand{
 }
@@ -15,11 +14,15 @@
     max-width: 240px;
     width: 240px;
     height: 52px;
+    cursor: pointer;
 }
 .IconLink{
     width: 24px;
-    margin: 5px;
+    margin: 0 0px -3px 10px;
 }
 .TextLink{
-    margin: 5px;
+    margin: 10px;
+}
+.Logo{
+    margin: 10px 0 30px 10px;
 }

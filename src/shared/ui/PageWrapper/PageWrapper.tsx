@@ -1,7 +1,8 @@
 import {memo, ReactNode} from 'react';
 import {classNames, Mods} from "shared/lib/classNames/classNames";
 import cls from "./PageWrapper.module.scss"
-import {Header} from "../../../widgets/Header/Header";
+import {Header} from "widgets/Header/Header";
+import {NavBarCustom} from "widgets/NavBarCustom/NavBarCustom";
 
 interface PageWrapperProps {
     className?: string
@@ -25,6 +26,7 @@ export const PageWrapper = memo((props: PageWrapperProps) => {
             className={classNames(cls.PageWrapper, mods, [className])}
             {...otherProps}
         >
+            <NavBarCustom/>
             <Header/>
             {children}
         </div>
