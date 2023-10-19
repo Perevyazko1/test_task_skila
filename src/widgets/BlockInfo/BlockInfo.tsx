@@ -4,68 +4,18 @@ import cls from "./BlockInfo.module.scss"
 import MainAPI from "providers/api/axios";
 import incoming_call from "shared/assets/icons/incoming_call.svg"
 import outgoing_call from  "shared/assets/icons/outgoing_call.svg"
-import {AudioPlayer} from "../../features/Player/Player";
+import {AudioPlayer} from "features/Player/Player";
+import {GetList} from "providers/api/models/GetList";
 
 interface BlockInfoProps {
     className?: string
     children?: ReactNode
 }
 
-interface TypeOfData {
-            id: number,
-            partnership_id: string,
-            partner_data: {
-                "id": "578",
-                "name": "ООО \"ГРУЗЧИКОВ-СЕРВИС СПБ\"",
-                "phone": "74951205096"
-            },
-            date: string,
-            date_notime: string,
-            time: 198,
-            from_number: string,
-            from_extension: "",
-            to_number: "sip**r_**",
-            to_extension: "671",
-            is_skilla: 0,
-            status: "Дозвонился",
-            record: string,
-            line_number: "781**13**",
-            line_name: "",
-            in_out: number,
-            from_site: 0,
-            source: string,
-            errors: [
-                "Скрипт не использован"
-            ],
-            disconnect_reason: "",
-            results: [
-                {
-                    "type": "is_new",
-                    "title": "Новый",
-                    "tooltip": ""
-                }
-            ],
-            stages: [],
-            abuse: [],
-            contact_name: "",
-            contact_company: "",
-            person_id: 4730,
-            person_name: "**",
-            person_surname: "**",
-            person_avatar: string,
-            candidate_id: 0,
-            candidate_name: "",
-            candidate_link: "",
-            candidate_vacancy_name: ""
 
-}
-
-interface TypeOfRecordData{
-
-}
 export const BlockInfo = memo((props: BlockInfoProps) => {
-    const [listData, setListData] = useState<TypeOfData[]>();
-    const [recordData, setRecordData] = useState();
+    const [listData, setListData] = useState<GetList[]>();
+    const [callFilter, setCallFilter] = useState<number | null>(null);
     const [hoveredRow, setHoveredRow] = useState<number | null>(null);
 
       const handleRowHover = (index: number) => {
@@ -85,25 +35,16 @@ export const BlockInfo = memo((props: BlockInfoProps) => {
         
     };
 
-            async function fetchData() {
-        const list_data = await MainAPI.get_data(`getList?date_start=2023-01-01&date_end=2023-02-01&in_out=0`);
+        async function fetchData() {
+        const list_data = await MainAPI.get_data(`getList?date_start=2023-01-01&date_end=2023-02-01&in_out=${callFilter}`);
         setListData(list_data.results)
-                console.log(list_data)
-
-
-
         }
-        async function fetchDataRecord(id_record:string,partnership_id:string) {
-            const record_data = await MainAPI.get_data(`getRecord?record=${id_record}&partnership_id=${partnership_id}`)
 
-            console.log(record_data)
-            setRecordData(record_data)
-            }
 
     useEffect(() => {
     fetchData();
 
-  }, []);
+  }, [callFilter]);
 
 
     return (
@@ -111,6 +52,7 @@ export const BlockInfo = memo((props: BlockInfoProps) => {
             className={classNames(cls.BlockInfo, mods, [className])}
             {...otherProps}
         >
+            <button onClick={()=>setCallFilter(1)}>{callFilter===1? "Исходящие":"Входящие"}</button>
             <table>
                 <thead>
                         <tr>
@@ -127,7 +69,6 @@ export const BlockInfo = memo((props: BlockInfoProps) => {
                     {listData?.map((item, index) =>
                         <tr
                             key={item.id}
-                            onClick={()=>fetchDataRecord(item.record,item.partnership_id)}
                             onMouseEnter={() => handleRowHover(index)}
                             onMouseLeave={handleRowLeave}
                             className={hoveredRow === index? cls.RowCallActive:cls.RowCall}

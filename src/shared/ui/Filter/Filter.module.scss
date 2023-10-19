@@ -1,0 +1,38 @@
+.Filter{
+}
+.HeaderFilter{
+    display: flex;
+    cursor: pointer;
+    font: var(--font-main);
+    margin: 20px;
+}
+.ActiveHeaderFilter{
+    display: flex;
+    cursor: pointer;
+    font: var(--font-main);
+    margin: 20px;
+    color: var(--background-color-button-navbar);
+}
+
+.Vector{
+    margin: 0 0 3px 0;
+}
+.ContainerVector{
+    width: 25px;
+}
+
+.OpenFilter{
+    border-radius: 5px;
+    margin: 10px;
+    background: var(--background-color-info);
+    font: var(--font-main);
+    z-index: 1;
+}
+.RowFilter{
+    margin: 10px;
+}
+.ActiveRowFilter{
+    margin: 10px;
+    background: var(--background-color-page);
+    cursor: pointer;
+}
