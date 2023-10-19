@@ -1,0 +1,28 @@
+.Button {
+    position: relative;
+    padding: 12px ;
+    border-radius: 2px;
+    background: var(--background-color-button-navbar);
+    font: var(--font-main) ;
+    text-align: center;
+    color: var(--app-background);
+    margin: 10px auto;
+    cursor: pointer;
+}
+
+.outline {
+    background: var(--app-accent);
+    color: var(--app-secondary-text);
+    font: var(--font-active-button) ;
+    text-align: center;
+    border-color: var(--app-primary-100);
+    border: 2px solid;
+}
+.IconButton{
+    width: 34px;
+    position: absolute;
+    right: 10px;
+    bottom: 3px;
+}
+
+
