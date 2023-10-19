@@ -52,8 +52,7 @@ export const BlockInfo = memo((props: BlockInfoProps) => {
             className={classNames(cls.BlockInfo, mods, [className])}
             {...otherProps}
         >
-            <button onClick={()=>setCallFilter(1)}>{callFilter===1? "Исходящие":"Входящие"}</button>
-            <table>
+            <table className={cls.Table}>
                 <thead>
                         <tr>
                             <th>Тип</th>

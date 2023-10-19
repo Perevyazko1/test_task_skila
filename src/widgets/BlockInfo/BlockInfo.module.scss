@@ -1,9 +1,9 @@
 .BlockInfo{
     background: var(--background-color-info);
     border-radius: 10px ;
-    max-width: 1440px;
-    width: 75%;
-    margin: 20px 0 0 240px;
+    width: 85%;
+    margin: 20px auto;
+    padding: 10px;
     font: var(--font-main)
 }
 th {
@@ -32,4 +32,7 @@ td {
 }
 .RowCallActive{
     background: var(--background-color-page);
+}
+.Table{
+    margin: 20px auto;
 }
