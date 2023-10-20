@@ -5,6 +5,8 @@ import {BlockInfo} from "widgets/BlockInfo/BlockInfo";
 import {Filter} from "shared/ui/Filter/Filter";
 import {PageWrapper} from "shared/ui/PageWrapper/PageWrapper";
 import search from "shared/assets/icons/search.svg"
+import {FilterDate} from "shared/ui/FilterDate/FilterDate";
+import balance from "shared/assets/icons/balance.svg"
 
 interface MainPageProps {
     className?: string
@@ -58,8 +60,16 @@ interface MainPageProps {
                 className={classNames(cls.MainPage, mods, [className])}
                 {...otherProps}
             >
+                <div className={cls.ListingBalance}>
+                    <img className={cls.Balance} src={balance}/>
+                    <FilterDate/>
+                </div>
                 <div className={cls.BlockFilter}>
-                    <img className={cls.Search} src={search}/>
+                    <div className={cls.SearchBlock}>
+                        <img className={cls.Search} src={search}/>
+                        Поиск по звонкам
+                    </div>
+
                     <Filter nameFilter={"Все типы"} filters={filterCalls} pathParams={"in_out"}/>
                     <Filter nameFilter={"Все сотрудники"}/>
                     <Filter nameFilter={"Все звонки"}/>

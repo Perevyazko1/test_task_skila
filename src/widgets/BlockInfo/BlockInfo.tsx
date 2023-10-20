@@ -26,13 +26,6 @@ export const BlockInfo = memo((props: BlockInfoProps) => {
       const handleRowLeave = () => {
         setHoveredRow(null);
       };
-    //   const handleDate (dateStr:string)=>{
-    //       const formattedTime = new Date(dateStr).toLocaleTimeString('en-US', {
-    //       hour12: false,
-    //       hour: 'numeric',
-    //       minute: 'numeric'
-    //     });
-    // }
         const {
         className,
         children,
@@ -51,7 +44,6 @@ export const BlockInfo = memo((props: BlockInfoProps) => {
 
     useEffect(() => {
     fetchData();
-    console.log(location)
 
   }, [location.search]);
 
@@ -69,6 +61,7 @@ export const BlockInfo = memo((props: BlockInfoProps) => {
                             <th>Звонок</th>
                             <th>Источник</th>
                             <th>Оценка</th>
+                            <th></th>
                             <th>Длительность</th>
                         </tr>
                 </thead>
@@ -81,13 +74,18 @@ export const BlockInfo = memo((props: BlockInfoProps) => {
                             className={hoveredRow === index? cls.RowCallActive:cls.RowCall}
                         >
                             <img className={cls.TypeCall} src={item.in_out === 1? incoming_call: outgoing_call}/>
-                            <td>{item.date}</td>
+                            <td className={cls.BlackText}>{item.date.split(' ')[1].slice(0, 5)}</td>
                             <img className={cls.Avatar} src={item.person_avatar} alt={"Avatar"}/>
-                            <td>{item.from_number}</td>
+                            <td className={cls.BlackText}>{item.from_number}</td>
                             <td>{item.source}</td>
                             <td>Оценка</td>
-                            <td>{item.time > 0 && hoveredRow !== index && item.time}</td>
-                            {item.time > 0 && hoveredRow === index && <AudioPlayer id_record={item.record} partnership_id={item.partnership_id} />}
+                            <td className={cls.Player}>{item.time > 0 && hoveredRow === index &&
+                                <AudioPlayer id_record={item.record} partnership_id={item.partnership_id} />}
+                            </td>
+
+                            <td className={cls.BlackText}>
+                                {item.time > 0 && hoveredRow !== index && `${Math.floor(item.time / 60)}:${String(item.time % 60).padStart(2, '0')}`}
+                            </td>
                         </tr>
                     )}
                 </tbody>

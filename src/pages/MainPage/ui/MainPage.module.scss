@@ -17,4 +17,22 @@
     color: var(--text-header-color);
 }
 .Search{
+    margin: 0 15px 0 0 ;
+    width: 16px;
+}
+.SearchBlock{
+    font: var(--font-main);
+    margin: 6px auto 0 0;
+}
+.ListingBalance{
+    display: flex;
+    padding: 10px;
+    position: relative;
+    height: 40px;
+
+}
+.Balance{
+    position: absolute;
+    right: 290px;
+    top: 15px;
 }

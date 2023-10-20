@@ -2,9 +2,10 @@
     background: var(--background-color-info);
     border-radius: 10px ;
     width: 85%;
-    margin: 20px auto;
+    margin: 0 auto;
     padding: 10px;
-    font: var(--font-main)
+    font: var(--font-main);
+    color: var(--text-header-color);
 }
 th {
     width: auto;
@@ -35,4 +36,10 @@ td {
 }
 .Table{
     margin: 20px auto;
+}
+.Player{
+    width: 400px;
+}
+.BlackText{
+    color: black;
 }
