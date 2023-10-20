@@ -24,6 +24,16 @@
     font: var(--font-main);
     margin: 6px auto 0 0;
 }
+.Resset{
+    margin: 0 15px 0 0 ;
+    width: 16px;
+}
+.RessetBlock{
+    font: var(--font-main);
+    margin: 6px auto 0 0;
+    cursor: pointer;
+}
+
 .ListingBalance{
     display: flex;
     padding: 10px;

@@ -7,6 +7,8 @@ import {PageWrapper} from "shared/ui/PageWrapper/PageWrapper";
 import search from "shared/assets/icons/search.svg"
 import {FilterDate} from "shared/ui/FilterDate/FilterDate";
 import balance from "shared/assets/icons/balance.svg"
+import {useQueryParams} from "shared/hooks/useQueryParams/useQueryParams";
+import close from "shared/assets/icons/close.svg"
 
 interface MainPageProps {
     className?: string
@@ -24,7 +26,9 @@ interface MainPageProps {
     const mods: Mods = {
 
     };
-    const currentDate = new Date();
+      const {setQueryParam, queryParameters, initialLoad} = useQueryParams();
+      const currentDate = new Date();
+
 
       const year = currentDate.getFullYear();
       const month = String(currentDate.getMonth() + 1).padStart(2, "0");
@@ -37,19 +41,16 @@ interface MainPageProps {
       const pastMonth = String(pastDate.getMonth() + 1).padStart(2, "0");
       const pastDay = String(pastDate.getDate()).padStart(2, "0");
       const pastDateFormatted = `${pastYear}-${pastMonth}-${pastDay}`;
-      console.log(currentDateFormatted)
-     console.log(pastDateFormatted)
     const filterCalls:{ [key: string]: [string, string]} = {
         incomingCalls:["Входящие","1"],
         outgoingCalls:["Исходящие","0"],
         allCalls:["Все",""]
     }
-    const filterDate:{ [key: string]: [string, string]} = {
-        threeDays:["3 дня","1"],
-        week:["Неделя","0"],
-        moth:["Месяц",""],
-        year:["Год",""],
-        selectDate:["Указать даты",""],
+    const handleClearFilter = () => {
+        Object.keys(queryParameters).map(item=>(
+            setQueryParam(item,"")
+        ))
+
     }
 
 
@@ -69,7 +70,12 @@ interface MainPageProps {
                         <img className={cls.Search} src={search}/>
                         Поиск по звонкам
                     </div>
-
+                    {Object.keys(queryParameters).length !== 0 &&
+                        <div className={cls.RessetBlock} onClick={handleClearFilter}>
+                            <img className={cls.Resset}  src={close} alt={"reset"}/>
+                            Сбросить фильтры
+                        </div>
+                    }
                     <Filter nameFilter={"Все типы"} filters={filterCalls} pathParams={"in_out"}/>
                     <Filter nameFilter={"Все сотрудники"}/>
                     <Filter nameFilter={"Все звонки"}/>
