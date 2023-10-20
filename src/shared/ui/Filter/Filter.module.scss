@@ -22,21 +22,23 @@
 }
 
 .OpenFilter{
-    border-radius: 5px;
+    border-radius: 3px;
     margin: 10px;
     background: var(--background-color-info);
     font: var(--font-main);
-    z-index: 1;
+    box-shadow: 3px 3px 53px 3px rgba(34, 60, 80, 0.28);
+    overflow: hidden;
 }
 .RowFilter{
-    margin: 10px 0;
 }
 .TextFilter{
     margin: 10px auto;
 }
 .ActiveRowFilter{
-    margin: 10px 0;
     background: var(--background-color-active-row);
     cursor: pointer;
 
+}
+.TextRow{
+    margin: 0 0 0 6px;
 }

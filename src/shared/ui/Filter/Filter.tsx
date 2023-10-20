@@ -84,7 +84,7 @@ export const Filter = memo((props: FilterProps) => {
 
 
                       >
-                        {value[0]}
+                          <div className={cls.TextRow}>{value[0]}</div>
                       </div>
                     )}
                 </div>}
