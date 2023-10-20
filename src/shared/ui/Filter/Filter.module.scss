@@ -29,10 +29,14 @@
     z-index: 1;
 }
 .RowFilter{
-    margin: 10px;
+    margin: 10px 0;
+}
+.TextFilter{
+    margin: 10px auto;
 }
 .ActiveRowFilter{
-    margin: 10px;
-    background: var(--background-color-page);
+    margin: 10px 0;
+    background: var(--background-color-active-row);
     cursor: pointer;
+
 }

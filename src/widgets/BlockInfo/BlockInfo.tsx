@@ -3,10 +3,9 @@ import {classNames, Mods} from "shared/lib/classNames/classNames";
 import cls from "./BlockInfo.module.scss"
 import MainAPI from "providers/api/axios";
 import incoming_call from "shared/assets/icons/incoming_call.svg"
-import outgoing_call from  "shared/assets/icons/outgoing_call.svg"
+import outgoing_call from "shared/assets/icons/outgoing_call.svg"
 import {AudioPlayer} from "features/Player/Player";
 import {GetList} from "providers/api/models/GetList";
-import {useQueryParams} from "../../shared/hooks/useQueryParams/useQueryParams";
 import {useLocation} from "react-router-dom";
 
 interface BlockInfoProps {
@@ -17,9 +16,7 @@ interface BlockInfoProps {
 
 export const BlockInfo = memo((props: BlockInfoProps) => {
     const [listData, setListData] = useState<GetList[]>();
-    const [callFilter, setCallFilter] = useState<number | null>(null);
     const [hoveredRow, setHoveredRow] = useState<number | null>(null);
-    const {setQueryParam, queryParameters, initialLoad} = useQueryParams();
     const location = useLocation()
 
       const handleRowHover = (index: number) => {
