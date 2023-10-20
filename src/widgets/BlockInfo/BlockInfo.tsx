@@ -7,6 +7,7 @@ import outgoing_call from "shared/assets/icons/outgoing_call.svg"
 import {AudioPlayer} from "features/Player/Player";
 import {GetList} from "providers/api/models/GetList";
 import {useLocation} from "react-router-dom";
+import {useQueryParams} from "../../shared/hooks/useQueryParams/useQueryParams";
 
 interface BlockInfoProps {
     className?: string
@@ -18,6 +19,7 @@ export const BlockInfo = memo((props: BlockInfoProps) => {
     const [listData, setListData] = useState<GetList[]>();
     const [hoveredRow, setHoveredRow] = useState<number | null>(null);
     const location = useLocation()
+    const {setQueryParam, queryParameters, initialLoad} = useQueryParams();
 
       const handleRowHover = (index: number) => {
         setHoveredRow(index);
@@ -26,6 +28,27 @@ export const BlockInfo = memo((props: BlockInfoProps) => {
       const handleRowLeave = () => {
         setHoveredRow(null);
       };
+      const handleSortDate =()=>{
+          setQueryParam("sort_by", "date")
+          setQueryParam("order", "ASC")
+          if (queryParameters.order ==="ASC"){
+              setQueryParam("order", "DESC")
+          }else {
+              setQueryParam("order", "ASC")
+          }
+
+
+      }
+      const handleSortDuration =()=>{
+          setQueryParam("sort_by", "duration")
+          setQueryParam("order", "ASC")
+          if (queryParameters.order ==="ASC"){
+              setQueryParam("order", "DESC")
+          }else {
+              setQueryParam("order", "ASC")
+          }
+      }
+
         const {
         className,
         children,
@@ -56,13 +79,23 @@ export const BlockInfo = memo((props: BlockInfoProps) => {
                 <thead>
                         <tr>
                             <th>Тип</th>
-                            <th>Время</th>
+                            <th
+                                className={cls.SortBy}
+                                onClick={handleSortDate}
+                            >
+                                Время
+                            </th>
                             <th>Сотрудник</th>
                             <th>Звонок</th>
                             <th>Источник</th>
                             <th>Оценка</th>
                             <th></th>
-                            <th>Длительность</th>
+                            <th
+                                className={cls.SortBy}
+                                onClick={handleSortDuration}
+                            >
+                                Длительность
+                            </th>
                         </tr>
                 </thead>
                 <tbody>
