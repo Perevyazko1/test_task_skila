@@ -104,8 +104,11 @@ const decrementDate = (numDays: number) => {
                       disabledKeyboardNavigation
                       placeholderText="__.__.__-__.__.__"
                       onCalendarClose={()=>{
-                          setQueryParam("date_start",moment(startDateInput).format("YYYY-MM-DD"));
-                          setQueryParam("date_end",moment(endDateInput).format("YYYY-MM-DD"))
+                          console.log(startDateInput)
+                          if(startDateInput && endDateInput){
+                              setQueryParam("date_start",moment(startDateInput).format("YYYY-MM-DD"));
+                              setQueryParam("date_end",moment(endDateInput).format("YYYY-MM-DD"))
+                          }
                       }
                     }
                       onChange={(update) => {
