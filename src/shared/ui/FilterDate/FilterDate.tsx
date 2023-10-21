@@ -137,33 +137,39 @@ export const FilterDate = memo((props: FilterDateProps) => {
 
 
                         key={value[0]}
-                    >   {value[0]}
+                    >
+                        <div className={cls.TextRow}>{value[0]}</div>
                     </div>
                 )}
-
-                <DatePicker
-                  selectsRange={true}
-                  startDate={startDateInput}
-                  endDate={endDateInput}
-                  disabledKeyboardNavigation
-                  placeholderText="__.__.__-__.__.__"
-                  onCalendarClose={()=>{
-                      if(startDateInput && endDateInput){
-                          setQueryParam("date_start",moment(startDateInput).format("YYYY-MM-DD"));
-                          setQueryParam("date_end",moment(endDateInput).format("YYYY-MM-DD"))
-                      }
-                  }
-                }
-                  onChange={(update) => {
-                    setDateRange(update);
-                    if(update && update[0] === null && update[1] === null){
-                      setQueryParam("date_start","");
-                      setQueryParam("date_end","")
-                    }
-                  }}
-                  isClearable={true}
-                />
-            </div>
+                    <div className={cls.DatePicker}>
+                        Указать даты
+                        <div className={cls.DatePickerRow}>
+                            <DatePicker
+                              selectsRange={true}
+                              startDate={startDateInput}
+                              endDate={endDateInput}
+                              disabledKeyboardNavigation
+                              placeholderText="__.__.__-__.__.__"
+                              onCalendarClose={()=>{
+                                  if(startDateInput && endDateInput){
+                                      setQueryParam("date_start",moment(startDateInput).format("YYYY-MM-DD"));
+                                      setQueryParam("date_end",moment(endDateInput).format("YYYY-MM-DD"))
+                                  }
+                              }
+                            }
+                              onChange={(update) => {
+                                setDateRange(update);
+                                if(update && update[0] === null && update[1] === null){
+                                  setQueryParam("date_start","");
+                                  setQueryParam("date_end","")
+                                }
+                              }}
+                              isClearable={true}
+                            />
+                            <img className={cls.IconDatePickerRow} src={calendar} alt={"calendar"}/>
+                        </div>
+                    </div>
+                </div>
             }
 
 
