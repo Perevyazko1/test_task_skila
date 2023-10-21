@@ -28,8 +28,19 @@ export const FilterDate = memo((props: FilterDateProps) => {
     const [statusFilter,setStatusFilter] = useState(false);
     const [dateStart,setDateStart] = useState(currentDateFormatted);
     const [dateEnd,setDateEnd] = useState(currentDateFormatted);
+    const [hoveredRow, setHoveredRow] = useState<number | null>(null);
     const [dateRange, setDateRange] = useState<[Date|null,Date|null]>([null, null]);
     const [startDateInput, endDateInput] = dateRange;
+
+
+      const handleRowHover = (index: number) => {
+        setHoveredRow(index);
+      };
+
+      const handleRowLeave = () => {
+        setHoveredRow(null);
+      };
+
 
 
 
@@ -72,6 +83,14 @@ export const FilterDate = memo((props: FilterDateProps) => {
       setQueryParam('date_end',  dateEnd );
     };
 
+        const filterDate:{ [key: string]: [string, number,number,number,number]} = {
+        threeDays:["3 дня",2,0,0,-2],
+        week:["Неделя",6,0,0,-6],
+        month:["Месяц",0,1,0,-1],
+        year:["Год",0,1,0,-1]
+    }
+
+
     const {
         className,
         children,
@@ -87,7 +106,6 @@ export const FilterDate = memo((props: FilterDateProps) => {
             className={classNames(cls.FilterDate, mods, [className])}
             {...otherProps}
         >
-
             <div className={cls.HeaderFilter}>
                 <img onClick={() => {decrementDate(-2,-1,0)}}  className={cls.Vector} src={vector_left} alt={"left"}/>
                 <div className={cls.StatusHeader} onClick={()=>setStatusFilter(!statusFilter)}>
@@ -96,41 +114,51 @@ export const FilterDate = memo((props: FilterDateProps) => {
                 </div>
                 <img onClick={() => {incrementDate(2,1,0)}} className={cls.Vector} src={vector_right} alt={"right"}/>
             </div>
+
             {statusFilter &&
-
                 <div className={cls.OpenFilter}>
-                    <div>3 дня</div>
-                    <div>Неделя</div>
-                    <div>Месяц</div>
-                    <div>Год</div>
-                    <DatePicker
-                      selectsRange={true}
-                      startDate={startDateInput}
-                      endDate={endDateInput}
-                      disabledKeyboardNavigation
-                      placeholderText="__.__.__-__.__.__"
-                      onCalendarClose={()=>{
-                          console.log(startDateInput)
-                          if(startDateInput && endDateInput){
-                              setQueryParam("date_start",moment(startDateInput).format("YYYY-MM-DD"));
-                              setQueryParam("date_end",moment(endDateInput).format("YYYY-MM-DD"))
-                          }
+                {filterDate && Object.values(filterDate)?.map((value,index)=>
+                    <div
+                        className={hoveredRow === index? cls.ActiveRowFilter:cls.RowFilter}
+                        onMouseEnter={() => handleRowHover(index)}
+                        onMouseLeave={handleRowLeave}
+                        onClick={()=>{
+                            setHeaderFilter(value[0])
+                            setStatusFilter(false)
+                        }}
+
+
+                        key={value[0]}
+                    >   {value[0]}
+                    </div>
+                )}
+
+                <DatePicker
+                  selectsRange={true}
+                  startDate={startDateInput}
+                  endDate={endDateInput}
+                  disabledKeyboardNavigation
+                  placeholderText="__.__.__-__.__.__"
+                  onCalendarClose={()=>{
+                      if(startDateInput && endDateInput){
+                          setQueryParam("date_start",moment(startDateInput).format("YYYY-MM-DD"));
+                          setQueryParam("date_end",moment(endDateInput).format("YYYY-MM-DD"))
                       }
+                  }
+                }
+                  onChange={(update) => {
+                    setDateRange(update);
+                    if(update && update[0] === null && update[1] === null){
+                      setQueryParam("date_start","");
+                      setQueryParam("date_end","")
                     }
-                      onChange={(update) => {
-                        setDateRange(update);
-                        if(update && update[0] === null && update[1] === null){
-                          setQueryParam("date_start","");
-                          setQueryParam("date_end","")
-                        }
-
-
-                      }}
-                      isClearable={true}
-                    />
-
-                </div>
+                  }}
+                  isClearable={true}
+                />
+            </div>
             }
+
+
             {children}
         </div>
     );

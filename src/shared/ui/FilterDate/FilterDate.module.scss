@@ -6,7 +6,21 @@
     top: 20px;
 }
 .OpenFilter{
+    border-radius: 3px;
+    margin: 10px;
+    background: var(--background-color-info);
+    font: var(--font-main);
+    box-shadow: 3px 3px 53px 3px rgba(34, 60, 80, 0.28);
+    overflow: hidden;
+
 }
+.ActiveRowFilter{
+    background: var(--background-color-active-row);
+    cursor: pointer;
+}
+.RowFilter{
+}
+
 .TextHeader{
     margin: 2px 0 0 0;
 }
