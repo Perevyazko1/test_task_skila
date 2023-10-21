@@ -28,6 +28,9 @@ export const FilterDate = memo((props: FilterDateProps) => {
     const [statusFilter,setStatusFilter] = useState(false);
     const [dateStart,setDateStart] = useState(currentDateFormatted);
     const [dateEnd,setDateEnd] = useState(currentDateFormatted);
+    const [dayState,setDayState] = useState<number>(2)
+    const [monthState,setMonthState] = useState<number>(0)
+    const [yearState,setYearState] = useState<number>(0)
     const [hoveredRow, setHoveredRow] = useState<number | null>(null);
     const [dateRange, setDateRange] = useState<[Date|null,Date|null]>([null, null]);
     const [startDateInput, endDateInput] = dateRange;
@@ -83,11 +86,11 @@ export const FilterDate = memo((props: FilterDateProps) => {
       setQueryParam('date_end',  dateEnd );
     };
 
-        const filterDate:{ [key: string]: [string, number,number,number,number]} = {
-        threeDays:["3 дня",2,0,0,-2],
-        week:["Неделя",6,0,0,-6],
-        month:["Месяц",0,1,0,-1],
-        year:["Год",0,1,0,-1]
+        const filterDate:{ [key: string]: [string, number,number,number]} = {
+        threeDays:["3 дня",2,0,0],
+        week:["Неделя",6,0,0],
+        month:["Месяц",0,1,0],
+        year:["Год",0,0,1]
     }
 
 
@@ -107,12 +110,14 @@ export const FilterDate = memo((props: FilterDateProps) => {
             {...otherProps}
         >
             <div className={cls.HeaderFilter}>
-                <img onClick={() => {decrementDate(-2,-1,0)}}  className={cls.Vector} src={vector_left} alt={"left"}/>
+                <img onClick={() => {decrementDate(-dayState,-monthState,-yearState)}}  className={cls.Vector} src={vector_left} alt={"left"}/>
                 <div className={cls.StatusHeader} onClick={()=>setStatusFilter(!statusFilter)}>
                     <img className={cls.Calendar} src={calendar} alt={"calendar"}/>
                     <div className={cls.TextHeader}>{headerFilter}</div>
                 </div>
-                <img onClick={() => {incrementDate(2,1,0)}} className={cls.Vector} src={vector_right} alt={"right"}/>
+                <img onClick={() => {
+
+                    incrementDate(dayState,monthState,yearState)}} className={cls.Vector} src={vector_right} alt={"right"}/>
             </div>
 
             {statusFilter &&
@@ -125,6 +130,9 @@ export const FilterDate = memo((props: FilterDateProps) => {
                         onClick={()=>{
                             setHeaderFilter(value[0])
                             setStatusFilter(false)
+                            setDayState(value[1])
+                            setMonthState(value[2])
+                            setYearState(value[3])
                         }}
 
 
