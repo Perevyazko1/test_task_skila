@@ -18,10 +18,10 @@ interface FilterDateProps {
 export const FilterDate = memo((props: FilterDateProps) => {
     const currentDate = new Date();
 
-  const year = currentDate.getFullYear();
-  const month = String(currentDate.getMonth() + 1).padStart(2, '0');
-  const day = String(currentDate.getDate()).padStart(2, '0');
-  const currentDateFormatted = `${year}-${month}-${day}`;
+    const year = currentDate.getFullYear();
+    const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+    const day = String(currentDate.getDate()).padStart(2, '0');
+    const currentDateFormatted = `${year}-${month}-${day}`;
 
     const {setQueryParam, queryParameters, initialLoad} = useQueryParams();
     const [headerFilter,setHeaderFilter] = useState("3 дня");
@@ -34,37 +34,43 @@ export const FilterDate = memo((props: FilterDateProps) => {
 
 
 
-const updateDate = (numDays: number) => {
-  const newDateObj = new Date(dateEnd);
-  newDateObj.setDate(newDateObj.getDate() + numDays);
+    const incrementDate = (numDays: number, numMonths: number, numYears: number) => {
+      const newDateObj = new Date(dateEnd);
+      newDateObj.setDate(newDateObj.getDate() + numDays);
+      newDateObj.setMonth(newDateObj.getMonth() + numMonths);
+      newDateObj.setFullYear(newDateObj.getFullYear() + numYears);
 
-  const year = newDateObj.getFullYear();
-  const month = String(newDateObj.getMonth() + 1).padStart(2, '0');
-  const day = String(newDateObj.getDate()).padStart(2, '0');
-  const updatedDate = `${year}-${month}-${day}`;
+      const year = newDateObj.getFullYear();
+      const month = String(newDateObj.getMonth() + 1).padStart(2, '0');
+      const day = String(newDateObj.getDate()).padStart(2, '0');
+      const updatedDate = `${year}-${month}-${day}`;
 
-  setDateStart(dateEnd);
-  setDateEnd(updatedDate);
+      setDateStart(dateEnd);
+      setDateEnd(updatedDate);
 
-  setQueryParam('date_start', dateEnd);
-  setQueryParam('date_end', updatedDate);
-};
+      setQueryParam('date_start', dateEnd);
+      setQueryParam('date_end', updatedDate);
+    };
 
-const decrementDate = (numDays: number) => {
-  const newDateObj = new Date(dateEnd);
-  newDateObj.setDate(newDateObj.getDate() + numDays);
 
-  const year = newDateObj.getFullYear();
-  const month = String(newDateObj.getMonth() + 1).padStart(2, '0');
-  const day = String(newDateObj.getDate()).padStart(2, '0');
-  const updatedDate = `${year}-${month}-${day}`;
+    const decrementDate = (numDays: number, numMonths: number, numYears: number) => {
+      const newDateObj = new Date(dateEnd);
+      newDateObj.setDate(newDateObj.getDate() + numDays);
+      newDateObj.setMonth(newDateObj.getMonth() + numMonths);
+      newDateObj.setFullYear(newDateObj.getFullYear() + numYears);
 
-  setDateStart(dateEnd);
-  setDateEnd(updatedDate);
 
-  setQueryParam('date_start', dateEnd);
-  setQueryParam('date_end', updatedDate);
-};
+      const year = newDateObj.getFullYear();
+      const month = String(newDateObj.getMonth() + 1).padStart(2, '0');
+      const day = String(newDateObj.getDate()).padStart(2, '0');
+      const updatedDate = `${year}-${month}-${day}`;
+
+      setDateStart(dateEnd);
+      setDateEnd(updatedDate);
+
+      setQueryParam('date_start', updatedDate);
+      setQueryParam('date_end',  dateEnd );
+    };
 
     const {
         className,
@@ -83,12 +89,12 @@ const decrementDate = (numDays: number) => {
         >
 
             <div className={cls.HeaderFilter}>
-                <img onClick={() => {decrementDate(-2)}}  className={cls.Vector} src={vector_left} alt={"left"}/>
+                <img onClick={() => {decrementDate(-2,-1,0)}}  className={cls.Vector} src={vector_left} alt={"left"}/>
                 <div className={cls.StatusHeader} onClick={()=>setStatusFilter(!statusFilter)}>
                     <img className={cls.Calendar} src={calendar} alt={"calendar"}/>
                     <div className={cls.TextHeader}>{headerFilter}</div>
                 </div>
-                <img onClick={() => {updateDate(2)}} className={cls.Vector} src={vector_right} alt={"right"}/>
+                <img onClick={() => {incrementDate(2,1,0)}} className={cls.Vector} src={vector_right} alt={"right"}/>
             </div>
             {statusFilter &&
 
