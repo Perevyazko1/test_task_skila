@@ -1,4 +1,4 @@
-import {memo, ReactNode, useState} from 'react';
+import {memo, ReactNode, useEffect, useState} from 'react';
 import {classNames, Mods} from "shared/lib/classNames/classNames";
 import cls from "./Filter.module.scss"
 import vector_open from "shared/assets/icons/vector_open.svg"
@@ -31,6 +31,11 @@ export const Filter = memo((props: FilterProps) => {
     const [hoveredRow, setHoveredRow] = useState<number | null>(null);
     const [headerFilter,setHeaderFilter] = useState<string>(nameFilter);
 
+        useEffect(() => {
+        if (Object.keys(queryParameters).length === 0) {
+            setHeaderFilter(nameFilter);
+        }
+        }, [queryParameters]);
 
           const handleRowHover = (index: number) => {
         setHoveredRow(index);
@@ -44,11 +49,6 @@ export const Filter = memo((props: FilterProps) => {
     const mods: Mods = {
 
     };
-    const filter = {
-        incomingCalls:["Входящие","1"],
-        outgoingCalls:["Исходящие","0"],
-        allCalls:["Все",""]
-    }
 
     return (
         <div
