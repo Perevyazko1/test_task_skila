@@ -106,7 +106,7 @@ export const FilterDate = memo((props: FilterDateProps) => {
 
     return (
         <div
-            className={classNames(cls.FilterDate, mods, [className])}
+            className={classNames((startDateInput && endDateInput? cls.FilterDateRange:cls.FilterDate), mods, [className])}
             {...otherProps}
         >
             <div className={cls.HeaderFilter}>
@@ -120,7 +120,8 @@ export const FilterDate = memo((props: FilterDateProps) => {
             </div>
 
             {statusFilter &&
-                <div className={cls.OpenFilter}>
+                <div className={cls.WrapperOpenFilter}>
+                    <div className={cls.OpenFilter}>
                 {filterDate && Object.values(filterDate)?.map((value,index)=>
                     <div
                         className={hoveredRow === index? cls.ActiveRowFilter:cls.RowFilter}
@@ -146,11 +147,14 @@ export const FilterDate = memo((props: FilterDateProps) => {
                               startDate={startDateInput}
                               endDate={endDateInput}
                               disabledKeyboardNavigation
-                              placeholderText="__.__.__-__.__.__"
+                              placeholderText="__ . __ . __  -  __ . __ . __"
                               onCalendarClose={()=>{
                                   if(startDateInput && endDateInput){
                                       setQueryParam("date_start",moment(startDateInput).format("YYYY-MM-DD"));
                                       setQueryParam("date_end",moment(endDateInput).format("YYYY-MM-DD"))
+                                      setHeaderFilter(`${moment(endDateInput).format("DD/MM/YY")}-${moment(endDateInput).format("DD/MM/YY")}`)
+                                      setStatusFilter(false)
+
                                   }
                               }
                             }
@@ -167,6 +171,8 @@ export const FilterDate = memo((props: FilterDateProps) => {
                         </div>
                     </div>
                 </div>
+                </div>
+
             }
             {children}
         </div>

@@ -5,15 +5,25 @@
     right: 120px;
     top: 20px;
 }
+.FilterDateRange{
+    margin: 5px 30px;
+    font: var(--font-main);
+    position: absolute;
+    right: 70px;
+    top: 20px;
+}
+
 .OpenFilter{
     border-radius: 3px;
-    margin: 10px;
+    margin: 10px -70px 0 0 ;
     background: var(--background-color-info);
     font: var(--font-main);
     box-shadow: 3px 3px 53px 3px rgba(34, 60, 80, 0.28);
     overflow: hidden;
-    width: 140px;
-    position: absolute;
+    width: 200px;
+
+}
+.WrapperOpenFilter{
 
 }
 .ActiveRowFilter{
@@ -50,6 +60,5 @@
     display: flex;
 }
 .IconDatePickerRow{
-    position: absolute;
-    right: 20px;
+    margin-left: 10px
 }
