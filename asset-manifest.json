@@ -1,9 +1,9 @@
 {
   "files": {
     "main.css": "/test_task_skila/static/css/main.e89a0a4a.css",
-    "main.js": "/test_task_skila/static/js/main.92e71b7b.js",
-    "static/css/261.e424b131.chunk.css": "/test_task_skila/static/css/261.e424b131.chunk.css",
-    "static/js/261.1df9d6f9.chunk.js": "/test_task_skila/static/js/261.1df9d6f9.chunk.js",
+    "main.js": "/test_task_skila/static/js/main.ecbae19b.js",
+    "static/css/261.9a688a8f.chunk.css": "/test_task_skila/static/css/261.9a688a8f.chunk.css",
+    "static/js/261.4a65620a.chunk.js": "/test_task_skila/static/js/261.4a65620a.chunk.js",
     "static/js/787.49c4c078.chunk.js": "/test_task_skila/static/js/787.49c4c078.chunk.js",
     "static/js/819.1762ec7d.chunk.js": "/test_task_skila/static/js/819.1762ec7d.chunk.js",
     "static/media/header.svg": "/test_task_skila/static/media/header.4979224f68479553dbac7e2674b1343a.svg",
@@ -36,14 +36,14 @@
     "static/media/outgoing_call.svg": "/test_task_skila/static/media/outgoing_call.4ec7e331523550f8790e12736c3600b0.svg",
     "static/media/incoming_call.svg": "/test_task_skila/static/media/incoming_call.7ef36fa0f8cbf8cffacde7240432ccd9.svg",
     "main.e89a0a4a.css.map": "/test_task_skila/static/css/main.e89a0a4a.css.map",
-    "main.92e71b7b.js.map": "/test_task_skila/static/js/main.92e71b7b.js.map",
-    "261.e424b131.chunk.css.map": "/test_task_skila/static/css/261.e424b131.chunk.css.map",
-    "261.1df9d6f9.chunk.js.map": "/test_task_skila/static/js/261.1df9d6f9.chunk.js.map",
+    "main.ecbae19b.js.map": "/test_task_skila/static/js/main.ecbae19b.js.map",
+    "261.9a688a8f.chunk.css.map": "/test_task_skila/static/css/261.9a688a8f.chunk.css.map",
+    "261.4a65620a.chunk.js.map": "/test_task_skila/static/js/261.4a65620a.chunk.js.map",
     "787.49c4c078.chunk.js.map": "/test_task_skila/static/js/787.49c4c078.chunk.js.map",
     "819.1762ec7d.chunk.js.map": "/test_task_skila/static/js/819.1762ec7d.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e89a0a4a.css",
-    "static/js/main.92e71b7b.js"
+    "static/js/main.ecbae19b.js"
   ]
 }
