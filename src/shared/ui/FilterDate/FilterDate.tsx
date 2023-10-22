@@ -152,7 +152,7 @@ export const FilterDate = memo((props: FilterDateProps) => {
                                   if(startDateInput && endDateInput){
                                       setQueryParam("date_start",moment(startDateInput).format("YYYY-MM-DD"));
                                       setQueryParam("date_end",moment(endDateInput).format("YYYY-MM-DD"))
-                                      setHeaderFilter(`${moment(endDateInput).format("DD/MM/YY")}-${moment(endDateInput).format("DD/MM/YY")}`)
+                                      setHeaderFilter(`${moment(startDateInput).format("DD/MM/YY")}-${moment(endDateInput).format("DD/MM/YY")}`)
                                       setStatusFilter(false)
 
                                   }
