@@ -13,6 +13,7 @@ export default class MainAPI {
                     'Authorization': "Bearer testtoken",
                     "Content-type" : "audio/mpeg, audio/x-mpeg, audio/x-mpeg-3, audio/mpeg3",
                     "Content-Transfer-Encoding":"binary",
+                    "Content-Disposition": "filename='record.mp3'"
 
                 }
             }

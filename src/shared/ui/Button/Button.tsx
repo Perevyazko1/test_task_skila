@@ -34,7 +34,6 @@ export const Button = memo((props: ButtonProps) => {
                 <div className={cls.IconButton}>
                     <img  src={iconButton}/>
                 </div>
-
             }
             {children}
         </button>

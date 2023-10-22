@@ -8,6 +8,7 @@ import {AudioPlayer} from "features/Player/Player";
 import {GetList} from "providers/api/models/GetList";
 import {useLocation} from "react-router-dom";
 import {useQueryParams} from "../../shared/hooks/useQueryParams/useQueryParams";
+import moment from "moment";
 
 interface BlockInfoProps {
     className?: string
@@ -107,7 +108,7 @@ export const BlockInfo = memo((props: BlockInfoProps) => {
                             className={hoveredRow === index? cls.RowCallActive:cls.RowCall}
                         >
                             <img className={cls.TypeCall} src={item.in_out === 1? incoming_call: outgoing_call}/>
-                            <td className={cls.BlackText}>{item.date.split(' ')[1].slice(0, 5)}</td>
+                            <td className={cls.BlackText}>{moment(item.date).format("hh:mm") }</td>
                             <img className={cls.Avatar} src={item.person_avatar} alt={"Avatar"}/>
                             <td className={cls.BlackText}>{item.from_number}</td>
                             <td>{item.source}</td>
@@ -115,7 +116,6 @@ export const BlockInfo = memo((props: BlockInfoProps) => {
                             <td className={cls.Player}>{item.time > 0 && hoveredRow === index &&
                                 <AudioPlayer id_record={item.record} partnership_id={item.partnership_id} />}
                             </td>
-
                             <td className={cls.BlackText}>
                                 {item.time > 0 && hoveredRow !== index && `${Math.floor(item.time / 60)}:${String(item.time % 60).padStart(2, '0')}`}
                             </td>

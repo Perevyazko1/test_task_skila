@@ -65,7 +65,7 @@ export const NavBarCustom = memo((props: NavBarProps) => {
                     <img className={cls.IconLink} src={documents}/>
                     <span className={cls.TextLink}>Документы</span>
                 </div>
-                                                <div className={cls.Link}>
+                <div className={cls.Link}>
                     <img className={cls.IconLink} src={performers}/>
                     <span className={cls.TextLink}>Исполнители</span>
                 </div>

@@ -1,7 +1,7 @@
 import {memo, ReactNode, useState} from 'react';
 import {classNames, Mods} from "shared/lib/classNames/classNames";
 import cls from "./FilterDate.module.scss"
-import {useQueryParams} from "../../hooks/useQueryParams/useQueryParams";
+import {useQueryParams} from "shared/hooks/useQueryParams/useQueryParams";
 import vector_right from "shared/assets/icons/vector_right.svg"
 import vector_left from "shared/assets/icons/vector_left.svg"
 import calendar from "shared/assets/icons/calendar.svg"
@@ -67,7 +67,7 @@ export const FilterDate = memo((props: FilterDateProps) => {
     };
 
 
-    const decrementDate = (numDays: number, numMonths: number, numYears: number) => {
+      const decrementDate = (numDays: number, numMonths: number, numYears: number) => {
       const newDateObj = new Date(dateEnd);
       newDateObj.setDate(newDateObj.getDate() + numDays);
       newDateObj.setMonth(newDateObj.getMonth() + numMonths);
@@ -116,7 +116,6 @@ export const FilterDate = memo((props: FilterDateProps) => {
                     <div className={cls.TextHeader}>{headerFilter}</div>
                 </div>
                 <img onClick={() => {
-
                     incrementDate(dayState,monthState,yearState)}} className={cls.Vector} src={vector_right} alt={"right"}/>
             </div>
 
@@ -134,8 +133,6 @@ export const FilterDate = memo((props: FilterDateProps) => {
                             setMonthState(value[2])
                             setYearState(value[3])
                         }}
-
-
                         key={value[0]}
                     >
                         <div className={cls.TextRow}>{value[0]}</div>
@@ -171,8 +168,6 @@ export const FilterDate = memo((props: FilterDateProps) => {
                     </div>
                 </div>
             }
-
-
             {children}
         </div>
     );

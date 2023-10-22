@@ -14,8 +14,6 @@ export const AudioPlayer = memo((props: AudioPlayerProps) => {
         className,
         id_record,
         partnership_id,
-
-        ...otherProps
     } = props
   const mods: Mods = {
 
@@ -33,6 +31,7 @@ export const AudioPlayer = memo((props: AudioPlayerProps) => {
             "Authorization": "Bearer testtoken",
             "Content-type" : "audio/mpeg, audio/x-mpeg, audio/x-mpeg-3, audio/mpeg3",
             "Content-Transfer-Encoding":"binary",
+            "Content-Disposition": "filename='record.mp3'"
           }
         });
         const audioBlobUrl = URL.createObjectURL(response.data);

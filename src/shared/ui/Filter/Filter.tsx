@@ -37,7 +37,7 @@ export const Filter = memo((props: FilterProps) => {
         }
         }, [queryParameters]);
 
-          const handleRowHover = (index: number) => {
+      const handleRowHover = (index: number) => {
         setHoveredRow(index);
       };
 
@@ -62,13 +62,10 @@ export const Filter = memo((props: FilterProps) => {
                 <div className={cls.ContainerVector}>
                     <img className={cls.Vector} src={statusFilter? vector_open:vector_close}/>
                 </div>
-
                 <div>{headerFilter}</div>
-
             </div>
             {statusFilter &&
                 <div className={cls.OpenFilter}>
-
                     {filters && Object.values(filters)?.map((value,index) =>
                       <div
                           key={value[0]}
@@ -80,9 +77,6 @@ export const Filter = memo((props: FilterProps) => {
                             }}
                           onMouseEnter={() => handleRowHover(index)}
                           onMouseLeave={handleRowLeave}
-
-
-
                       >
                           <div className={cls.TextRow}>{value[0]}</div>
                       </div>

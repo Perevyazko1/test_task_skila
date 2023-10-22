@@ -27,21 +27,8 @@ interface MainPageProps {
 
     };
       const {setQueryParam, queryParameters, initialLoad} = useQueryParams();
-      const currentDate = new Date();
 
-
-      const year = currentDate.getFullYear();
-      const month = String(currentDate.getMonth() + 1).padStart(2, "0");
-      const day = String(currentDate.getDate()).padStart(2, "0");
-      const currentDateFormatted = `${year}-${month}-${day}`;
-
-      const pastDate = new Date();
-      pastDate.setDate(currentDate.getDate() - 2);
-      const pastYear = pastDate.getFullYear();
-      const pastMonth = String(pastDate.getMonth() + 1).padStart(2, "0");
-      const pastDay = String(pastDate.getDate()).padStart(2, "0");
-      const pastDateFormatted = `${pastYear}-${pastMonth}-${pastDay}`;
-    const filterCalls:{ [key: string]: [string, string]} = {
+      const filterCalls:{ [key: string]: [string, string]} = {
         incomingCalls:["Входящие","1"],
         outgoingCalls:["Исходящие","0"],
         allCalls:["Все",""]
